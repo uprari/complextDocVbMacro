@@ -1,0 +1,32 @@
+Private Sub btnSubmitFetch_Click()
+    Dim url As String
+    Dim http As Object
+    Dim resp As String
+
+    url = "https://domain.com?m_number=" & txtMNumber.Text & _
+          "&vs_number=" & txtVSNumber.Text & "&run_hash=" & txtRunHash.Text
+
+    Set http = CreateObject("MSXML2.XMLHTTP")
+    On Error GoTo ErrHandler
+    http.Open "GET", url, False
+    http.setRequestHeader "Authorization", "Bearer " & gToken
+    http.Send
+
+    If http.Status = 200 Then
+        gJsonResult = http.responseText
+        MsgBox "Fetch Successful!"
+        frmMainMenu.SetButtonsEnabled True
+    Else
+        MsgBox "Error " & http.Status & ": " & http.responseText
+    End If
+
+    Me.Hide
+    frmMainMenu.Show vbModeless
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Failed to fetch data."
+    Me.Hide
+    frmMainMenu.Show vbModeless
+End Sub
+

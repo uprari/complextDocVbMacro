@@ -1,0 +1,14 @@
+Function JsonToDict(jsonString As String) As Object
+    Dim parsed As Object, key As Variant
+    Set parsed = JsonConverter.ParseJson(jsonString)
+
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+
+    For Each key In parsed.Keys
+        dict.Add "__" & key, parsed(key)
+    Next
+
+    Set JsonToDict = dict
+End Function
+

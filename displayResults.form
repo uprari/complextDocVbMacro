@@ -1,0 +1,25 @@
+Sub DisplayResultAsHTML()
+    Dim json As Object, key As Variant
+    Set json = JsonConverter.ParseJson(gJsonResult)
+
+    Dim html As String
+    html = "<html><body><table border='1'>"
+
+    For Each key In json.Keys
+        html = html & "<tr><td>" & key & "</td><td>" & json(key) & "</td></tr>"
+    Next
+
+    html = html & "</table></body></html>"
+
+    Dim fso As Object, filePath As String
+    filePath = Environ("TEMP") & "\result.html"
+    Set fso = CreateObject("Scripting.FileSystemObject")
+
+    With fso.CreateTextFile(filePath, True)
+        .Write html
+        .Close
+    End With
+
+    ThisDocument.FollowHyperlink filePath
+End Sub
+

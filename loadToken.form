@@ -1,0 +1,14 @@
+Private Sub btnSubmitToken_Click()
+    If Trim(txtToken.Text) = "" Then
+        MsgBox "Please enter a token", vbExclamation
+        Exit Sub
+    End If
+    gToken = Trim(txtToken.Text)
+    Me.Hide
+    frmMainMenu.Show vbModeless
+End Sub
+
+Private Sub UserForm_Initialize()
+    Me.Left = Application.Width - Me.Width - 50
+End Sub
+

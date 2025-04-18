@@ -1,0 +1,10 @@
+Public gToken As String
+Public gJsonResult As String
+Public gResultDict As Object
+
+Sub InitializeGlobals()
+    Set gResultDict = CreateObject("Scripting.Dictionary")
+    gToken = ""
+    gJsonResult = ""
+End Sub
+

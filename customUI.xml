@@ -1,0 +1,12 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+  <ribbon>
+    <tabs>
+      <tab id="customTab" label="Optimizer">
+        <group id="customGroup" label="optimizer.inc">
+          <button id="startAppButton" label="optimizer.inc" onAction="StartOptimizerApp" imageMso="HappyFace" size="large"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

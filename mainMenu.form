@@ -1,0 +1,39 @@
+Private Sub UserForm_Initialize()
+    SetButtonsEnabled False
+    Me.Left = Application.Width - Me.Width - 50
+End Sub
+
+Sub SetButtonsEnabled(enabled As Boolean)
+    btnDisplayResult.Enabled = enabled
+    btnUpdateDict.Enabled = enabled
+    btnFetchFacts.Enabled = enabled
+End Sub
+
+Private Sub btnFetchResults_Click()
+    Me.Hide
+    frmFetchParams.Show vbModeless
+End Sub
+
+Private Sub btnDisplayResult_Click()
+    If gJsonResult <> "" Then
+        Call DisplayResultAsHTML
+    End If
+End Sub
+
+Private Sub btnUpdateDict_Click()
+    If gJsonResult <> "" Then
+        Set gResultDict = JsonToDict(gJsonResult)
+        MsgBox "Result dictionary updated!"
+    End If
+End Sub
+
+Private Sub btnFetchFacts_Click()
+    Me.Hide
+    frmFacts.Show vbModeless
+End Sub
+
+Private Sub btnUpdateToken_Click()
+    Me.Hide
+    frmToken.Show vbModeless
+End Sub
+
