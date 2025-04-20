@@ -8,3 +8,28 @@ Sub InitializeGlobals()
     gJsonResult = ""
 End Sub
 
+Public Sub ShowFormRight(form As Object)
+    Dim appLeft As Long, appTop As Long, appWidth As Long, appHeight As Long
+    Dim formWidth As Long, formHeight As Long
+
+    ' Get the Word application window position
+    With Application
+        appLeft = .Left
+        appTop = .Top
+        appWidth = .Width
+        appHeight = .Height
+    End With
+
+    ' Form dimensions
+    formWidth = form.Width
+    formHeight = form.Height
+
+    ' Position form to right side of Word window
+    With form
+        .StartUpPosition = 0 ' Manual position
+        .Top = appTop + 50
+        .Left = appLeft + appWidth - formWidth - 20
+    End With
+
+    form.Show vbModeless
+End Sub
