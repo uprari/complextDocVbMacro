@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word Add-in</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  </head>
+  <body>
+    <h2>Welcome to Home Page</h2>
+    <button onclick="fetchResults()">Fetch Results</button>
+
+    <script>
+      async function fetchResults() {
+        await Word.run(async (context) => {
+          context.document.body.insertText("Results fetched successfully!", Word.InsertLocation.end);
+          await context.sync();
+        });
+      }
+    </script>
+  </body>
+</html>
