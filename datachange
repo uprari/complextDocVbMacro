@@ -1,0 +1,39 @@
+import PyPDF2
+
+def replace_text_in_pdf(input_pdf, output_pdf, replacements):
+    # Open the input PDF
+    reader = PyPDF2.PdfReader(input_pdf)
+    writer = PyPDF2.PdfWriter()
+    
+    # Iterate through each page
+    for page_num in range(len(reader.pages)):
+        page = reader.pages[page_num]
+        # Extract text (note: this may not work perfectly for all PDFs)
+        text = page.extract_text()
+        
+        # Perform replacements
+        new_text = text
+        for old_text, new_text in replacements:
+            new_text = new_text.replace(old_text, new_text)
+        
+        # Note: PyPDF2 doesn't directly support text replacement.
+        # This is a placeholder for custom logic if text replacement is needed.
+        # For actual replacement, you may need to recreate the page or use another library.
+        
+        # Add the page to the writer
+        writer.add_page(page)
+    
+    # Save the output PDF
+    with open(output_pdf, 'wb') as output_file:
+        writer.write(output_file)
+
+# Define the replacements
+replacements = [
+    ("17 May", "6 April"),
+    ("26 April", "4 April")
+]
+
+# Replace text in the PDF
+input_pdf = "/home/vineet/Downloads/GOFLDNTAE5JK4340333_Eticket.pdf"  # Replace with your PDF file path
+output_pdf = "output.pdf"  # Output file name
+replace_text_in_pdf(input_pdf, output_pdf, replacements)
